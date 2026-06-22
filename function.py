@@ -22,24 +22,28 @@ def make_spirals(n, rev = 4, ampl = 5):
     
 def sigmoid(z):
     """
-    z : numpy array 
+    z : numpy array  
+    return sigmoid of z
     """
     return 1/(1+np.exp(-z))
 
 def sigmoid_prime(z):
     """
     z : numpy array 
+    return sigmoid' of z
     """
     return sigmoid(z)*(1-sigmoid(z))
 
 def Relu(z):
     """
     z : numpy array 
+    return Relu of z
     """
     return np.maximum(0,z)
 
 def Relu_prime(z):
     """
     z : numpy array 
+    return Relu' of z
     """
     return np.where(z<0,0,1)
