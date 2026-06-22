@@ -1,0 +1,23 @@
+import numpy as np 
+
+class Loss:
+    def __init__(self):
+        return
+    def forward(self, y_hat, y):
+        raise NotImplementedError
+    def backward(self, y_hat, y):
+        raise NotImplementedError
+    
+class BCE(Loss):
+    def __init__(self):
+        return
+    def forward(self, y_hat, y):
+        L = 0
+        m = len(y)
+        y_hat = np.transpose(y_hat)
+        for i in range(len(y)):
+            L -= 1/m*(y[i]*np.log(y_hat[i])+(1-y[i])*np.log(1-y_hat[i]))
+        return L
+    def backward(self, y_hat, y):
+        y = np.transpose(y)
+        return (y_hat - y)/(y_hat*(1 - y_hat))
