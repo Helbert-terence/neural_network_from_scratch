@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 
 
 def train(network, loss_fn, X, y, lr, epochs):
+    # main loop for training the model 
     for _ in range(epochs):
         y_hat = network.forward(np.transpose(X))
         loss = loss_fn.forward(y_hat,y)
