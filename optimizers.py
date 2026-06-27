@@ -11,6 +11,8 @@ class Adam:
     def update(self, network):
         self.t += 1
         for layer in network.layers:
+            if not hasattr(layer, 'W'):
+                continue
             if not hasattr(layer, 'mW'):
                 layer.mW = np.zeros_like(layer.W)
                 layer.vW = np.zeros_like(layer.W)

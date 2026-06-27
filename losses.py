@@ -14,6 +14,7 @@ class BCE(Loss):
     def __init__(self):
         return
     def forward(self, y_hat, y):
+        y_hat = np.clip(y_hat, 1e-7, 1 - 1e-7)
         L = 0
         m = len(y)
         y_hat = np.transpose(y_hat)
@@ -22,5 +23,6 @@ class BCE(Loss):
         return L
     def backward(self, y_hat, y):
         # derivative of BCE with respect to y_hat
+        y_hat = np.clip(y_hat, 1e-7, 1 - 1e-7)
         y = np.transpose(y)
         return (y_hat - y)/(y_hat*(1 - y_hat))
