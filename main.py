@@ -3,6 +3,7 @@ import function as func
 import losses as ls
 import network as nw
 import matplotlib.pyplot as plt
+import optimizers as opt
 
 
 def train(network, loss_fn, optimizer, X, y, epochs):
