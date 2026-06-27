@@ -5,7 +5,7 @@ import network as nw
 import matplotlib.pyplot as plt
 
 
-def train(network, loss_fn, X, y, lr, epochs):
+def train(network, loss_fn, optimizer, X, y, epochs):
     # main loop for training the model 
     for _ in range(epochs):
         y_hat = network.forward(np.transpose(X))
@@ -14,7 +14,7 @@ def train(network, loss_fn, X, y, lr, epochs):
             print(loss)
         delta = loss_fn.backward(y_hat,y)
         network.backward(delta)
-        network.update(lr)
+        optimizer.update(network)
 
 
 N = 100
@@ -32,10 +32,10 @@ model = nw.Network([
 
 
 loss_fn = ls.BCE()
-lr = 0.01
+optimizer = opt.Adam(lr=0.001)
 epochs = 50000
 
-train(model, loss_fn, X, y, lr, epochs)
+train(model, loss_fn, optimizer, X, y, epochs)
 
 # Grille
 x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
@@ -49,5 +49,5 @@ preds = model.forward(grid.T).reshape(xx.shape)
 # Plot
 plt.contour(xx, yy, preds, levels=[0.5], colors='black')
 plt.scatter(X[:, 0], X[:, 1], c=y.ravel(), cmap='RdBu', edgecolors='k', s=20)
-plt.title("Frontière de décision")
+plt.title("Decision boundary")
 plt.show()
