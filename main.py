@@ -34,7 +34,7 @@ model = nw.Network([
 
 loss_fn = ls.BCE()
 optimizer = opt.Adam(lr=0.001)
-epochs = 50000
+epochs = 5000
 
 train(model, loss_fn, optimizer, X, y, epochs)
 
