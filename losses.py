@@ -25,4 +25,4 @@ class BCE(Loss):
         # derivative of BCE with respect to y_hat
         y_hat = np.clip(y_hat, 1e-7, 1 - 1e-7)
         y = np.transpose(y)
-        return (y_hat - y)/(y_hat*(1 - y_hat))
+        return 1/len(y)*(y_hat - y)/(y_hat*(1 - y_hat))

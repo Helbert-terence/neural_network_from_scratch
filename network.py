@@ -11,8 +11,8 @@ class Linear():
         self.a_prev = a_prev # keep for backprop
         return np.dot(self.W,a_prev) + self.b
     def backward(self, delta):
-        self.dW = 1/self.a_prev.shape[1] * np.dot(delta, np.transpose(self.a_prev))
-        self.db = 1/self.a_prev.shape[1] * np.sum(delta, keepdims = True)
+        self.dW = np.dot(delta, np.transpose(self.a_prev))
+        self.db = np.sum(delta, axis = 1, keepdims = True)
         return np.dot(np.transpose(self.W),delta) # to give to previous 
      
 class ReLU():
